@@ -8,6 +8,7 @@ namespace App\Core;
       private $name;
       private $data;
 
+
       function __construct($viewName, array $viewData = array()){
         $this->name = $viewName;
         $this->data = $viewData;
@@ -16,13 +17,14 @@ namespace App\Core;
 
     public function render()
     {
-      ob_start();
+      //ob_start();
       if(count($this->data) > 0)
         extract($this->data);
- 
-      require($this->path.$this->name.'.php');
-      ob_get_flush();
-      // $out = ob_get_clean();
-      // var_dump($out);
+
+      require(dirname(__FILE__, 3).'/pages/layouts/simple/header.php');
+      require($this->path.$this->name.'.php');  
+      require(dirname(__FILE__, 3).'/pages/layouts/simple/footer.php');
+      //ob_get_flush();
+
     }
  }

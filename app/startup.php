@@ -8,5 +8,3 @@ require_once dirname(__FILE__) . '/routes.php';
 
 $app = new Application();
 $app->execute();
-
-require_once('./pages/layouts/simply.php');

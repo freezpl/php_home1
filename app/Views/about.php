@@ -1,5 +1,4 @@
-<?php
-    echo "<h1>About page!<h1>";
-?>
-
-asdsddasdssd
+<div class="container">
+<h2>About page</h2>
+<?php echo $this->name ?>
+</div>

@@ -1,0 +1,81 @@
+.navigation-wrapper{
+    background-color: #009400;
+    margin-bottom: 20px;
+}
+
+h3{
+    color: #008000;
+}
+
+.logo{
+    /*max-width: 400px;*/
+}
+
+.logo img {
+    width: 100%;
+}
+
+/*navigation*/
+.nav-container{
+    height: 100%;
+}
+
+.nav-container nav{
+
+}
+
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+body{
+    
+    /*background-color:#ff666f;*/
+    background-color: #fffde9;
+}
+
+a{
+    
+    color:#fff !important;
+    
+}
+.nav-item {
+    font-family: Century Gothic;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+}
+.nav-item a {
+    color: #FFF;
+    text-decoration: none;
+    font: 20px Century Gothic;
+    margin: 0px 10px;
+    padding: 10px 10px;
+    position: relative;
+    z-index: 0;
+}
+
+.topBotomBordersOut a:before, .topBotomBordersOut a:after {
+    position: absolute;
+    left: 0px;
+    width: 100%;
+    height: 2px;
+    background: #FFF;
+    content:"";
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.topBotomBordersOut a:before {
+    top: 0px;
+    transform: translateY(10px);
+}
+.topBotomBordersOut a:after {
+    bottom: 0px;
+    transform: translateY(-10px);
+}
+.topBotomBordersOut a:hover:before, .topBotomBordersOut a:hover:after {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+.form-wrapper{
+
+}

@@ -22,7 +22,10 @@ namespace App\Core;
         static function getRoute(){
             switch ($_SERVER['REQUEST_METHOD']){
                 case 'GET':
-                    return self::findGetRoute(self::$getRoutes);
+                    return self::findRoute(self::$getRoutes);
+                break;
+                case 'POST':
+                    return self::findRoute(self::$postRoutes);
                 break;
                 default:
                     return null;
@@ -30,7 +33,7 @@ namespace App\Core;
             } 
         }
 
-        private static function findGetRoute($routes){
+        private static function findRoute($routes){
         
             $path = $_REQUEST['path'];
 
