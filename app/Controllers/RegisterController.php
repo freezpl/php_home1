@@ -14,16 +14,14 @@ use \App\Core\Services\UserService;
         }
 
         public function add($id = null) : View {
-            var_dump($_POST);
-
             $user = new User();
             $user->name = $_POST['name'];
             $user->email = $_POST['email'];
             $user->password = $_POST['password'];
             $user->age = $_POST['age'];
 
-            UserService::register($user);
+            $isReg = UserService::register($user);
 
-            return new View('register');
+            return $isReg ? new View('home') : new View('register');
         }
     }

@@ -9,7 +9,7 @@
     <tbody>
         <?php 
             foreach ($this->data['users'] as $key => $u) {
-              echo "<tr><td>".$key."</td><td>".$u['name']."</td><td>".$u['age']."</td></tr>";
+              echo "<tr><td>".($key + 1)."</td><td>".$u['name']."</td><td>".$u['age']."</td></tr>";
             }  
         ?>
     </tbody>

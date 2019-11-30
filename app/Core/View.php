@@ -17,14 +17,14 @@ namespace App\Core;
 
     public function render()
     {
-      //ob_start();
+      ob_start();
       if(count($this->data) > 0)
         extract($this->data);
 
       require(dirname(__FILE__, 3).'/pages/layouts/simple/header.php');
       require($this->path.$this->name.'.php');  
       require(dirname(__FILE__, 3).'/pages/layouts/simple/footer.php');
-      //ob_get_flush();
+      ob_get_flush();
 
     }
  }

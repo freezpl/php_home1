@@ -13,6 +13,7 @@ h3{
 
 .logo img {
     width: 100%;
+    max-width: 400px;
 }
 
 /*navigation*/
