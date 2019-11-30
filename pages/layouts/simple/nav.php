@@ -13,9 +13,9 @@
                   <ul class="topBotomBordersOut navbar-nav mx-auto text-center">
                     <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/animals">Find friend</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li> 
                     <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/login">Login</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="/register">Register</a></li> 
                     </li>
                   </ul>
                 </div>

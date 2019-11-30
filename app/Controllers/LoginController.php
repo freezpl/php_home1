@@ -7,21 +7,19 @@ use \App\Core\View;
 use \App\Models\User;
 use \App\Core\Services\UserService;
 
-    class RegisterController extends Controller {
+    class LoginController extends Controller {
 
         public function index($id = null) : View {
-            return new View('register');
+            return new View('login');
         }
 
-        public function add() : View {
+        public function log() : View {
             $user = new User();
-            $user->name = $_POST['name'];
             $user->email = $_POST['email'];
             $user->password = $_POST['password'];
-            $user->age = $_POST['age'];
 
-            $isReg = UserService::register($user);
-
-            return $isReg ? new View('home') : new View('register');
+            $user = UserService::login($user);
+            $data['user'] = $user;
+            return ($user == null) ? new View('login', $data) : new View('profile', $data);
         }
     }

@@ -9,6 +9,10 @@ Router::get(new Route('', 'Home'));
 Router::get(new Route('animals', 'Animals'));
 Router::get(new Route('about', 'About'));
 Router::get(new Route('news', 'News'));
+
+Router::get(new Route('login', 'Login'));
+Router::post(new Route('login/log', 'Login', 'log'));
+
 Router::get(new Route('register', 'Register'));
 Router::post(new Route('register/add', 'Register', 'add'));
 
