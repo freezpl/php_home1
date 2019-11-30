@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Лис 30 2019 р., 18:27
+-- Час створення: Лис 30 2019 р., 21:58
 -- Версія сервера: 5.6.43
 -- Версія PHP: 7.1.22
 
@@ -34,15 +34,16 @@ CREATE TABLE `tbl_users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `age` int(11) DEFAULT NULL,
-  `ava` varchar(255) DEFAULT NULL
+  `ava` varchar(255) DEFAULT NULL,
+  `token` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп даних таблиці `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id`, `name`, `email`, `password`, `age`, `ava`) VALUES
-(2, 'Vasyan', 'v@v.ua', '12345', 32, NULL);
+INSERT INTO `tbl_users` (`id`, `name`, `email`, `password`, `age`, `ava`, `token`) VALUES
+(2, 'Vasyan', 'v@v.ua', '12345', 32, NULL, NULL);
 
 --
 -- Індекси збережених таблиць
@@ -62,7 +63,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT для таблиці `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
