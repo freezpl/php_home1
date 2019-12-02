@@ -3,7 +3,6 @@
 namespace App\Core;
 
     class View {
-
       private $path;
       private $name;
       private $data;
@@ -17,13 +16,9 @@ namespace App\Core;
     public function render()
     {
       ob_start();
-      if(count($this->data) > 0)
-        extract($this->data);
-
-      require(dirname(__FILE__, 3).'/pages/layouts/simple/header.php');
-      require($this->path.$this->name.'.php');  
-      require(dirname(__FILE__, 3).'/pages/layouts/simple/footer.php');
+      $modules['content'] = new Module($this->name, $this->data);
+      $layoutData['name'] = $this->name;
+      Layout::render(APP_LAYOUT, $modules, $layoutData);
       ob_get_flush();
-
     }
  }
