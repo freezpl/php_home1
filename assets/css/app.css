@@ -32,10 +32,8 @@ body{
     background-color: #fffde9;
 }
 
-a{
-    
+nav a{ 
     color:#fff !important;
-    
 }
 .nav-item {
     font-family: Century Gothic;
