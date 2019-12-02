@@ -35,7 +35,7 @@ namespace App\Core;
 
         private static function findRoute($routes){
         
-            $path = $_REQUEST['path'];
+            $path = (isset($_REQUEST['path'])) ? $_REQUEST['path'] : '';
 
             if(substr($path, -1) == '/')
                 $path = substr($path, 0, -1);

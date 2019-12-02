@@ -11,5 +11,3 @@ use \App\Core\View;
             return new View('about');
         }
     }
-
-   

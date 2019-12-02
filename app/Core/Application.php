@@ -6,7 +6,6 @@ class Application {
     private $view;
     
     function __construct(){
-        
     }
 
     public function execute(){

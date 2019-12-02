@@ -8,7 +8,6 @@ namespace App\Core;
       private $name;
       private $data;
 
-
       function __construct($viewName, array $viewData = array()){
         $this->name = $viewName;
         $this->data = $viewData;

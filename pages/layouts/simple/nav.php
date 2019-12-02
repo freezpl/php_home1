@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="logo col-lg-4 col-md-5">
             <a href="/" >
-                <img src="<? echo '//'.$_SERVER['SERVER_NAME'].'/assets/img/logo.png' ?>">
+                <img src="<? echo APP_URL.'/assets/img/logo.png' ?>">
             </a>
             </div>
             <div class="nav-container">
