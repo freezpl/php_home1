@@ -8,10 +8,14 @@
     //set layout - app/Views/layouts/(example)
     define('APP_LAYOUT', 'default');
 
-    //!THIS WORK - DONT TOUCH!
     if(APP_PORT != '')
         define('APP_URL', '//'.APP_HOST.':'.APP_PORT.'/');
     else
         define('APP_URL', '//'.APP_HOST.'/');
     define('APP_BASE', __DIR__);
+
+
+    define('APP_PAGES', APP_BASE.'/Views/pages/');
+    define('APP_MODULES', APP_BASE.'/Views/modules/');
+    define('APP_LAYOUTS', APP_BASE.'/Views/layouts/');
 ?>

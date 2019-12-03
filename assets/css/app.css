@@ -112,3 +112,9 @@ nav a{
     color: #fff;
     font-weight: 600;
 }
+
+.color-block{
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 1px 1px 5px 1px #e8e8e8;
+}

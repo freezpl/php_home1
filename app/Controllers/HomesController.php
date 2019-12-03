@@ -26,4 +26,13 @@ use \DateTime;
 
             return new View('homes/1/part1', $data);
         }
+
+        public function getColors() : View {
+            return new View('homes/1/colors');
+        }
+
+        public function calculateColor() : View {
+            return new View('homes/1/colors', $_POST);
+        }
+
     }

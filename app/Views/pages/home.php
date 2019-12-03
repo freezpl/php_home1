@@ -4,6 +4,7 @@
             <h3>Home works</h3>
             <div class="list-group">
                 <a href="/homes/1/part1" class="list-group-item list-group-item-action"><span>1_1.</span> Calendar</a>
+                <a href="/homes/1/colors" class="list-group-item list-group-item-action"><span>1_2.</span> Colors</a>
             </div>
         </div>
     </div>

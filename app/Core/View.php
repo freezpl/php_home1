@@ -3,14 +3,12 @@
 namespace App\Core;
 
     class View {
-      private $path;
       private $name;
       private $data;
 
       function __construct($viewName, array $viewData = array()){
         $this->name = $viewName;
         $this->data = $viewData;
-        $this->path = dirname(__FILE__, 2).'/Views/';
       }
 
     public function render()

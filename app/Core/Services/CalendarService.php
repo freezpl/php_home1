@@ -28,6 +28,7 @@ class CalendarService{
             }
             $row++;
         }
+
         return $calendar;
     }
 }

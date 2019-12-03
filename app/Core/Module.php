@@ -14,6 +14,11 @@ namespace App\Core;
 
         function render()
         {
-            include(APP_BASE.'/Views/'.$this->module.'.php');
+            include(APP_PAGES.$this->module.'.php');
+        }
+
+        static function quiqRender($module, array $data = array()){
+            extract($data);
+            include(APP_MODULES.$module.'.php');
         }
     }
