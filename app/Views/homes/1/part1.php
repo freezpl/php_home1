@@ -10,6 +10,26 @@
     </div>
     <button type="submit" class="btn btn-primary">Show calendar</button>
     </form>
+    <?php if($this->data != null){
+        $calendar = $this->data['calendar']; 
+        echo "<h4>".$this->data['month']."</h4>";
+        echo "<div class='calendar'>";
+        for ($i=0; $i < count($calendar); $i++){  
+            echo "<div class='calendar-row'>"
+            for ($j=0; $j < 7; $j++) {
+                if($calendar[$i][$j] == 0){
+                    echo "<div class='day'></div>";
+                }
+                else if($j < 6){
+
+                }
+            }
+            echo "</div>";
+        }
+
+        echo "</div>";
+    }
+    ?>
 </div>
 </div>
 </div>
