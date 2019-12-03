@@ -21,6 +21,7 @@ use \DateTime;
                $dateObj   = DateTime::createFromFormat('!m', $_POST['month']);
                $monthName = $dateObj->format('F'); 
                $data['month'] = $monthName;
+               $data['monthNum'] = $_POST['month'];
             }    
 
             return new View('homes/1/part1', $data);

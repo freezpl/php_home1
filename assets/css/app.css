@@ -75,6 +75,40 @@ nav a{
     transform: translateY(0px);
 }
 
-.form-wrapper{
+.calendar{
+    display: flex;
+    flex-direction: column;
+}
 
+.calendar-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.calendar .day{
+    border: 1px solid #208c20;
+    background: #ffffff;
+    width: 12%;
+    text-align: right;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px 0px #a9a9a9;
+}
+
+.calendar .day-title{
+    background: #398e3d;
+    color: #ffee5c;
+}
+
+.calendar .day-weekday {
+    background: #e6f9e6;
+}
+
+.calendar .day-holyday {
+    background: #ff7676;
+    color: #fff;
+    font-weight: 600;
 }
