@@ -20,10 +20,10 @@ class UserService{
 
     static function register($user){
         $dbh = DbService::setCotnnection();
-        $query = "INSERT INTO tbl_users (name, email, password, age) VALUES ('".$user->name."','".$user->email."','".$user->password."','".$user->age."')";
+        $query = "INSERT INTO tbl_users (name, email, password, age) VALUES (?, ?, ?, ?)";
         try {
             $sth = $dbh->prepare($query);
-            $sth->execute();
+            $sth->execute([$user->name, $user->email, $user->password, $user->age]);
             $dbh = null;
             return true;
         }catch (Exception $e){
