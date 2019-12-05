@@ -18,4 +18,5 @@
     define('APP_PAGES', APP_BASE.'/Views/pages/');
     define('APP_MODULES', APP_BASE.'/Views/modules/');
     define('APP_LAYOUTS', APP_BASE.'/Views/layouts/');
+    define('APP_SERVICES', APP_BASE.'/Services/');
 ?>
