@@ -42,13 +42,18 @@ class CaptchaService{
 		return ($code == $cap) ? true : false;
 	}
 
-	public static function badAttempt(){
-		//$ip = self::findIp($_SERVER['REMOTE_ADDR']);
-		$res = self::findIp('1.1.1.1');
-		if($res == null)
-			self::addToBlocklist($res['ip']);
-		else
-			self::decrementAttempt($res['ip']);
+	public static function badAttempt($row){
+		if($row == null)
+			self::addToBlocklist($_SERVER['REMOTE_ADDR']);
+		else{
+			if((int)$row['attempts'] > 0)
+				self::decrementAttempt($row['ip']);
+			else{
+				self::blockIp($row['ip']);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static function findIp($ip){
@@ -70,7 +75,7 @@ class CaptchaService{
 
 	private static function addToBlocklist($ip){
 		$dbh = DbService::setCotnnection();
-        $query = "INSERT INTO blockslist (ip) VALUES (?)";
+        $query = "INSERT INTO blocklist (ip) VALUES (?)";
         try {
             $sth = $dbh->prepare($query);
             $sth->execute([$ip]);
@@ -96,10 +101,34 @@ class CaptchaService{
 		}
 	}
 
+	private static function blockIp($ip){
+		$dbh = DbService::setCotnnection();
+		$date_time = date('Y-m-d H:i:s', strtotime('now +1 hour'));
+        $query = "UPDATE blocklist SET date = '".$date_time."' WHERE ip='".$ip."'";
+        try {
+            $sth = $dbh->prepare($query);
+            $sth->execute();
+        }catch (Exception $e){
+			var_dump($e);
+		}
+		finally{
+			$dbh = null;
+		}
+	}
 
-
-
-
+	static function unblock($ip){
+		$dbh = DbService::setCotnnection();
+        $query = "DELETE FROM `blocklist` WHERE `ip`='".$ip."'";
+        try {
+            $sth = $dbh->prepare($query);
+            $sth->execute();
+        }catch (Exception $e){
+			var_dump($e);
+		}
+		finally{
+			$dbh = null;
+		}
+	}
 
 	private static function renderCaptcha($code)
 	{

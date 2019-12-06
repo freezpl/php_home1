@@ -17,14 +17,22 @@ use \App\Core\Services\Captcha\CaptchaService;
 
         public function log() : View {
             //isBloCked
-            //$ip = CaptchaService::findIp($_SERVER['REMOTE_ADDR']);
-            $res = CaptchaService::findIp('1.1.1.1');
-            if($res != null && $res['attempts'] == 0){
-                return new View('block');
+            $res = CaptchaService::findIp($_SERVER['REMOTE_ADDR']);
+            //$res = CaptchaService::findIp('1.1.1.1');
+            if($res != null && $res['date'] != null){
+                if($res['date'] > date("Y-m-d H:i:s"))
+                {
+                    $data['dateBlock'] = $res['date'];
+                    return new View('block');
+                }
+                else
+                CaptchaService::unblock($res['ip']); 
             }
+            
             //post check
             if(!isset($_POST['email']) || !isset($_POST['password']))
                 return new View('404');
+            
             session_start();
             if(!isset($_SESSION['captcha']))
                 return new View('session_error');
@@ -33,9 +41,13 @@ use \App\Core\Services\Captcha\CaptchaService;
             $isCaptcha = CaptchaService::checkCaptcha($code);
 
             if(!$isCaptcha){
-                CaptchaService::badAttempt();
-                $data['erreors']['captcha'] = 'Bad Captcha! Enter Again!';
-                return new View('login', $data);
+                if(!CaptchaService::badAttempt($res))
+                {
+                    $data['errors']['captcha'] = 'Bad Captcha! Enter Again!';
+                    return new View('login', $data);
+                }
+                else
+                    return new View('block');
             }
             
             //email check

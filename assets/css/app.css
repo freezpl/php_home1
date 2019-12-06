@@ -119,6 +119,14 @@ nav a{
     box-shadow: 1px 1px 5px 1px #e8e8e8;
 }
 
-.err-text{
-    color: rgb(156, 0, 0);
+.err-text, .has-error small{
+    color: rgb(156, 0, 0) !important;
+}
+
+ form .has-error input{
+border: 1px solid rgb(156, 0, 0);
+}
+
+.has-error small{
+
 }
