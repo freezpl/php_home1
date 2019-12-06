@@ -14,7 +14,9 @@ class Application {
 
         if($route == null)
         {
-            echo "<div style='text-align:center'><h4>404</h4><h6>Page not found</h6></div>";
+            //echo "<div style='text-align:center'><h4>404</h4><h6>Page not found</h6></div>";
+            $notFound =  new View('404');
+            $notFound->render();
             return;
         }
         

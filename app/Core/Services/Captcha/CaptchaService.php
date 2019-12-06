@@ -1,6 +1,9 @@
 <?php 
 namespace App\Core\Services\Captcha;
 
+use \App\Core\Services\DbService;
+use PDO;
+
 class CaptchaService{
 
     private static function generateCode() 
@@ -23,10 +26,79 @@ class CaptchaService{
 	public static function createCaptcha(){
 		$code = self::generateCode();
 		session_start();
-		$_SESSION['captcha']=$code;
+		$_SESSION['captcha']=md5($code);
 		//session_destroy();
 		self::renderCaptcha($code);
 	}
+
+	public static function checkCaptcha($code){
+		$code = trim($code); 
+		$code = md5($code);
+
+		//session_start();
+		$cap = $_SESSION['captcha'];
+		session_destroy();
+		
+		return ($code == $cap) ? true : false;
+	}
+
+	public static function badAttempt(){
+		//$ip = self::findIp($_SERVER['REMOTE_ADDR']);
+		$res = self::findIp('1.1.1.1');
+		if($res == null)
+			self::addToBlocklist($res['ip']);
+		else
+			self::decrementAttempt($res['ip']);
+	}
+
+	public static function findIp($ip){
+		$dbh = DbService::setCotnnection();
+        $query = "SELECT * FROM blocklist WHERE ip='".$ip."'";
+        try {
+            $sth = $dbh->prepare($query);
+            $sth->execute();
+			$res = $sth->fetch(PDO::FETCH_ORI_FIRST);
+			return ($res) ? $res : null;
+        }catch (Exception $e){
+			var_dump($e);
+			return null;
+		}
+		finally{
+			$dbh = null;
+		}
+	}
+
+	private static function addToBlocklist($ip){
+		$dbh = DbService::setCotnnection();
+        $query = "INSERT INTO blockslist (ip) VALUES (?)";
+        try {
+            $sth = $dbh->prepare($query);
+            $sth->execute([$ip]);
+        }catch (Exception $e){
+			var_dump($e);
+		}
+		finally{
+			$dbh = null;
+		}
+	}
+
+	private static function decrementAttempt($ip){
+		$dbh = DbService::setCotnnection();
+        $query = "UPDATE blocklist SET attempts = attempts - 1 WHERE ip='".$ip."'";
+        try {
+            $sth = $dbh->prepare($query);
+            $sth->execute();
+        }catch (Exception $e){
+			var_dump($e);
+		}
+		finally{
+			$dbh = null;
+		}
+	}
+
+
+
+
 
 
 	private static function renderCaptcha($code)
@@ -60,17 +132,17 @@ class CaptchaService{
 		$x = rand(0, 15);
 		$fontPath = __DIR__."/assets/fonts/";
 		for($i = 0; $i < strlen($code); $i++) {
-			$x+=25;
+			//$x+=25;
+			$x+=rand(18, 28);
 			$letter=substr($code, $i, 1);
 			$backgr = imagecolorallocate($im, rand($col['txt_from'], $col['txt_to']), rand($col['txt_from'], $col['txt_to']), rand($col['txt_from'], $col['txt_to']));
-			imagettftext ($im, rand(20, 32), rand(-30, 30), $x, rand(30, 40), $backgr, $fontPath.$font_arr[rand(0,sizeof($font_arr)-1)]["fname"], $letter);
+			imagettftext ($im, rand(20, 32), rand(-25, 25), $x, rand(32, 38), $backgr, $fontPath.$font_arr[rand(0,sizeof($font_arr)-1)]["fname"], $letter);
 		}
 
 		for($i=0; $i<$linenum; $i++){
             $color = imagecolorallocate($im, rand($col['ln_from'], $col['ln_to']), rand($col['ln_from'], $col['ln_to']), rand($col['ln_from'], $col['ln_to']));     
 			   imageline($im, 0, rand(1, 50), 230, rand(1, 50), $color);
 		}
-
 		ImagePNG ($im);
 		ImageDestroy ($im);
 	}
@@ -110,4 +182,6 @@ class CaptchaService{
 		$rgb[2]=hexdec(substr($hex,5,2));
 		return($rgb);
 	}
+
+
 }
