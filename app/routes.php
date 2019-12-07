@@ -15,6 +15,7 @@ Router::get(new Route('register', 'Register'));
 Router::post(new Route('register/add', 'Register', 'add'));
 
 Router::get(new Route('users', 'Users'));
+Router::post(new Route('users/fetch', 'Users', 'fetch'));
 
 Router::get(new Route('homes/1/part1', 'Homes'));
 Router::post(new Route('homes/1/part1/calendar', 'Homes', 'calendar'));
