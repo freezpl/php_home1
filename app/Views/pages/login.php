@@ -15,7 +15,7 @@
     </div>
     <div class="form-group">
     <img src='<?php echo APP_URL ?>app/Helpers/captcha/captcha.php' id='capcha-img'>
-    <a href="javascript:void(0);" onclick="document.getElementById('capcha-img').src='captcha.php?rid=' + Math.random();">Обновить капчу</a>
+    <a href="javascript:void(0);" onclick="document.getElementById('capcha-img').src='<?php echo APP_URL ?>app/Helpers/captcha/captcha.php?rid=' + Math.random();">Renwe captcha</a>
     </div>
     <div class="form-group <?php if(!!$captError){ echo "has-error"; } ?>">
     <label for="inputCaptcha">Password</label>
