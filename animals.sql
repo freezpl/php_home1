@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 06 2019 г., 17:49
--- Версия сервера: 5.7.25
--- Версия PHP: 7.3.2
+-- Час створення: Гру 07 2019 р., 13:10
+-- Версія сервера: 5.6.43
+-- Версія PHP: 7.1.22
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `animals`
+-- База даних: `animals`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `blocklist`
+-- Структура таблиці `blocklist`
 --
 
 CREATE TABLE `blocklist` (
@@ -35,16 +35,16 @@ CREATE TABLE `blocklist` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `blocklist`
+-- Дамп даних таблиці `blocklist`
 --
 
 INSERT INTO `blocklist` (`ip`, `attempts`, `date`) VALUES
-('1.1.1.1', 5, NULL);
+('127.0.0.1', 4, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tbl_users`
+-- Структура таблиці `tbl_users`
 --
 
 CREATE TABLE `tbl_users` (
@@ -54,47 +54,50 @@ CREATE TABLE `tbl_users` (
   `password` varchar(255) NOT NULL,
   `age` int(11) DEFAULT NULL,
   `ava` varchar(255) DEFAULT NULL,
-  `token` text,
-  `attempts` int(2) NOT NULL DEFAULT '0'
+  `token` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `tbl_users`
+-- Дамп даних таблиці `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id`, `name`, `email`, `password`, `age`, `ava`, `token`, `attempts`) VALUES
-(2, 'Vasyan', 'v@v.ua', '12345', 32, NULL, NULL, 0),
-(6, 'Piter', 'a@a.ua', '123', 25, NULL, NULL, 0),
-(7, 'Piter', 'a@a.ua', '123', 25, NULL, NULL, 0),
-(8, 'Piter', 'a@a.ua', '123', 25, NULL, NULL, 0),
-(9, 'Piter', 'a@a.ua', '123', 25, NULL, NULL, 0),
-(10, 'Piter', 'a@a.ua', '123', 25, NULL, NULL, 0);
+INSERT INTO `tbl_users` (`id`, `name`, `email`, `password`, `age`, `ava`, `token`) VALUES
+(2, 'Vasyan', 'v@v.ua', '12345', 32, NULL, NULL),
+(6, 'Piter', 'a@a.ua', '123', 25, NULL, NULL),
+(7, 'Stepan', '22@a.ua', '123', 22, NULL, NULL),
+(8, 'Pavel', 'af@a.ua', '123', 25, NULL, NULL),
+(9, 'Ivan', 'a@a.ua', '123', 27, NULL, NULL),
+(10, 'Valera', 'a@a.ua', '123', 25, NULL, NULL),
+(11, 'Vasyan', 'a@a.ua', '123', 32, NULL, NULL),
+(12, 'John', 'acvcv@a.ua', '123', 25, NULL, NULL),
+(13, 'Felix', 'fdfdf@a.ua', '123', 25, NULL, NULL),
+(14, 'Micael', 'a@a.ua', '123', 32, NULL, NULL);
 
 --
--- Индексы сохранённых таблиц
+-- Індекси збережених таблиць
 --
 
 --
--- Индексы таблицы `blocklist`
+-- Індекси таблиці `blocklist`
 --
 ALTER TABLE `blocklist`
   ADD UNIQUE KEY `ip` (`ip`);
 
 --
--- Индексы таблицы `tbl_users`
+-- Індекси таблиці `tbl_users`
 --
 ALTER TABLE `tbl_users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT для збережених таблиць
 --
 
 --
--- AUTO_INCREMENT для таблицы `tbl_users`
+-- AUTO_INCREMENT для таблиці `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
